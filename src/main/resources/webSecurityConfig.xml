@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<http use-expressions="true">
+
+
+		<!--
+		<intercept-url pattern="/dashboard.html" access="isAuthenticated()" />
+		<intercept-url pattern="/expression.html" access="isAuthenticated()" />
+		<intercept-url pattern="/authenticated.html" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/admin/dev_only.html" access="isAuthenticated() and principal.username=='admin2'" />
+		<intercept-url pattern="/admin/full_auth_only.html" access="isFullyAuthenticated()" />
+		<intercept-url pattern="/admin/**" access="isAuthenticated()" />
+-->
+
+		<!-- start -->
+		<!--
+		<intercept-url pattern="/demande-list.html" access="isAuthenticated()" />
+		<intercept-url pattern="/add-demande.html" access="hasRole('ROLE_OPERATEUR') or hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/edit-demande.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/dashboard.html" access="isAuthenticated()" />
+		<intercept-url pattern="/404.html" access="isAuthenticated()" />
+		<intercept-url pattern="/verification-list.html" access="isAuthenticated()" />
+		<intercept-url pattern="/add-verification.html" access="hasRole('ROLE_OPERATEUR') or hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/edit-verification.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/list-users.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/add-users.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/edit-user.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/testrestauration-list.html" access="isAuthenticated()" />
+		<intercept-url pattern="/add-testrestauration.html" access="hasRole('ROLE_OPERATEUR') or hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/edit-testrestauration.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/add-sauvegarde.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/list-Sauvegardetrim.html" access="hasRole('ROLE_OPERATEUR')" />
+		<intercept-url pattern="/user-profile.html" access="isAuthenticated()" />
+		<intercept-url pattern="/sauvegarde.html" access="hasRole('ROLE_OPERATEUR') or hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/allsauvegardelist.html" access="isAuthenticated()" />
+		<intercept-url pattern="/add-Admin.html" access=" hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/allsauvegardelist.html" access="isAuthenticated()" />
+		 -->
+
+
+
+		<form-login login-page="/login.html" default-target-url="/dashboard.html" authentication-failure-url="/login.html?error=true" />
+		<logout />
+
+		<remember-me key="myAppKey" />
+
+	</http>
+
+	<authentication-manager><!-- customUserService -->
+		<authentication-provider user-service-ref="customUserService">
+			<password-encoder hash="plaintext" />
+		</authentication-provider>
+	</authentication-manager>
+
+	<global-method-security pre-post-annotations="enabled"
+		secured-annotations="enabled" proxy-target-class="true" />
+
+</beans:beans>
